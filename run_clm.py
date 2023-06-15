@@ -399,6 +399,10 @@ def main():
             "You can do it from another script, save it, and load it from here, using --tokenizer_name."
         )
 
+    tokenizer.add_special_tokens({'additional_special_tokens': ['<|belief|>', '<|endofbelief|>', '<|action|>', '<|endofaction|>', \
+                                                            '<|response|>', '<|endofresponse|>', '<|context|>', '<|endofcontext|>', '<|user|>', '<|system|>', \
+                                                            '<|task|>', '<|endoftask|>', '<|chitchat|>', '<|endofchitchat|>']})
+
     if model_args.model_name_or_path:
         torch_dtype = (
             model_args.torch_dtype
