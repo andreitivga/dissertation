@@ -1,0 +1,164 @@
+dialogue_id - A unique identifier for a dialogue.
+services - A list of services present in the dialogue.
+
+USER:
+turns - A list of annotated system or user utterances.
+
+    frames - A list of frames, where each frame contains annotations for a single service.
+        actions - A list of actions corresponding to the system. Each action has the following fields:
+            act - The type of action. The list of all possible system acts is given below.
+            canonical_values (optional) - The values in their canonicalized form as used by the service. It is a list of strings of the same length as values.
+            slot (optional) - A slot argument for some of the actions.
+            values (optional) - A list of values assigned to the slot. If the values list is non-empty, then the slot must be present.
+
+        service - The name of the service corresponding to the frame. The slots and intents used in the following fields are taken from the schema of this service.
+        
+        slots - A list of slot spans in the utterance, only provided for non-categorical slots. Each slot span contains the following fields:
+            exclusive_end - The index of the character just after the last character corresponding to the slot value in the utterance. In python, utterance[start:exclusive_end] gives the slot value.
+            slot - The name of the slot.
+            start - The index of the starting character in the utterance corresponding to the slot value.
+        
+        state (user turns only) - The dialogue state corresponding to the service. It consists of the following fields:
+            active_intent - The intent corresponding to the service of the frame which is currently being fulfilled by the system. It takes the value "NONE" if none of the intents are active.
+            requested_slots - A list of slots requested by the user in the current turn.
+            slot_values - A dictionary mapping slot name to a list of strings. 
+                          For categorical slots, this list contains a single value assigned to the slot. 
+                          For non-categorical slots, all the values in this list are spoken variations of each other and are equivalent (e.g, "6 pm", "six in the evening", "evening at 6" etc.).
+
+    speaker - The speaker for the turn. Possible values are "USER" or "SYSTEM".
+    utterance - A string containing the natural language utterance.
+
+INFORM_INTENT - Express the desire to perform a certain task to the system. The action always has "intent" as the slot and a single value containing the intent being informed.
+NEGATE_INTENT - Negate the intent which has been offered by the system.
+AFFIRM_INTENT - Agree to the intent which has been offered by the system.
+INFORM - Inform the value of a slot to the system. The slot and values fields in the corresponding action are always non-empty.
+REQUEST - Request the value of a slot from the system. The corresponding action always contains a slot parameter. It may optionally contain a value, in which case, the user asks the system if the slot has the specified value.
+AFFIRM - Agree to the system's proposition. Slot and values are always empty.
+NEGATE - Deny the system's proposal. Slot and values are always empty.
+SELECT - Select a result being offered by the system. The corresponding action may either contain no parameters, in which case all the values proposed by the system are being accepted, or it may contain a slot and value parameters, in which case the specified slot and value are being accepted.
+REQUEST_ALTS - Ask for more results besides the ones offered by the system. Slot and values are always empty.
+THANK_YOU - Thank the system. Slot and values are always empty.
+GOODBYE - End the dialogue. Slot and values are always empty.
+
+
+SYSTEM:
+turns - A list of annotated system or user utterances.
+
+    frames - A list of frames, where each frame contains annotations for a single service.
+        actions - A list of actions corresponding to the system. Each action has the following fields:
+            act - The type of action. The list of all possible system acts is given below.
+            slot (optional) - A slot argument for some of the actions.
+            values (optional) - A list of values assigned to the slot. If the values list is non-empty, then the slot must be present.
+            canonical_values (optional) - The values in their canonicalized form as used by the service. It is a list of strings of the same length as values.
+
+        service - The name of the service corresponding to the frame. The slots and intents used in the following fields are taken from the schema of this service.
+
+        service_call (system turns only, optional) - The request sent to the service. It consists of the following fields:
+            method - The name of the intent or function of the service or API being executed.
+            parameters - A dictionary mapping slot name (all required slots and possibly some optional slots) to a value in its canonicalized form.
+
+        service_results (system turns only, optional) - A list of entities containing the results obtained from the service. 
+        It is only available for turns in which a service call is made. Each entity is represented as a dictionary mapping a slot name to a string containing its canonical value.
+            list slot name map to a string canonical value.
+        
+        slots - A list of slot spans in the utterance, only provided for non-categorical slots. Each slot span contains the following fields:
+            exclusive_end - The index of the character just after the last character corresponding to the slot value in the utterance. In python, utterance[start:exclusive_end] gives the slot value.
+            slot - The name of the slot.
+            start - The index of the starting character in the utterance corresponding to the slot value.
+
+    speaker - The speaker for the turn. Possible values are "USER" or "SYSTEM".
+    utterance - A string containing the natural language utterance.
+
+INFORM - Inform the value for a slot to the user. The slot and values fields in the corresponding action are always non-empty.
+REQUEST - Request the value of a slot from the user. The corresponding action always contains a slot, but values are optional. When values are present, they are used as examples for the user e.g, "Would you like to eat indian or chinese food or something else?"
+CONFIRM - Confirm the value of a slot before making a transactional service call.
+OFFER - Offer a certain value for a slot to the user. The corresponding action always contains a slot and a list of values for that slot offered to the user.
+NOTIFY_SUCCESS - Inform the user that their request was successful. Slot and values are always empty in the corresponding action.
+NOTIFY_FAILURE - Inform the user that their request failed. Slot and values are always empty in the corresponding action.
+INFORM_COUNT - Inform the number of items found that satisfy the user's request. The corresponding action always has "count" as the slot, and a single element in values for the number of results obtained by the system.
+OFFER_INTENT - Offer a new intent to the user. Eg, "Would you like to reserve a table?". The corresponding action always has "intent" as the slot, and a single value containing the intent being offered. The offered intent belongs to the service corresponding to the frame.
+REQ_MORE - Asking the user if they need anything else. Slot and values are always empty in the corresponding action.
+GOODBYE - End the dialogue. Slot and values are always empty in the corresponding action.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+I want to transfer some money please.
+
+*Belief State: 
+*Actions: banks request amount, banks request recipient_account_name, banks request account_type 
+*System Response: How much and who should I send it to? Checking or [banks_account_type]?
+
+checking
+
+*Belief State: banks amount $1,240, banks recipient_account_name Pranav 
+*Actions: banks request account_type 
+*System Response: Who should I send it to and from which account?
+
+to Pranav. from checking account
+
+*Belief State: banks account_type checking, banks amount $1,696, banks recipient_account_name Pranav 
+*Actions: banks confirm account_type, banks confirm amount, banks confirm recipient_account_name, banks confirm recipient_account_type 
+*System Response: Please confirm: trasfer [banks_amount] from your [banks_account_type] account to [banks_recipient_account_name]'s [banks_recipient_account_type] account.
+
+confirm
+
+*Belief State: banks account_type checking, banks amount $1, banks recipient_account_name Pranav, banks recipient_account_type dontcare 
+*Actions: banks notify_success 
+*System Response: your transfer is complete
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please help me check the balance in my checking account.
+
+*Belief State: banks account_type checking 
+*Actions: banks offer balance, banks offer account_type 
+*System Response: Your current balance is [banks_balance] in your [banks_account_type] account.
+
+['Banks_1']
+Banks 1 train dialogues_040.json
+['Music_1', 'Banks_1', 'Media_1']
+Banks 1 train dialogues_065.json
+['Events_1', 'Banks_1']
+Banks 1 train dialogues_097.json
+['Events_2', 'Banks_1']
+Banks 1 train dialogues_098.json
+['Events_1', 'Banks_1']
+Banks 1 train dialogues_099.json
+['Banks_2']
+Banks 2 dev dialogues_005.json
+['Events_1', 'Banks_2']
+Banks 2 dev dialogues_009.json
+['Services_4', 'Banks_2', 'Restaurants_2']
+Banks 2 dev dialogues_018.json
+
+['banks account_type savings']
+action  ['banks request recipient_account_name']
+target <|belief|> banks account_type savings <|endofbelief|> <|action|> banks request recipient_account_name <|endofaction|> <|response|> Yes I can help with that. Who will you be sending the funds to? <|endofresponse|>
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|endofcontext|>
+
+['banks account_type savings', 'banks recipient_account_name Amir', 'banks recipient_account_type savings']
+action  ['banks request amount']
+target <|belief|> banks account_type savings, banks recipient_account_name Amir, banks recipient_account_type savings <|endofbelief|> <|action|> banks request amount <|endofaction|> <|response|> What is the amount of 
+your transfer? <|endofresponse|>
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|system|> Yes I can help with that. Who will you be sending the funds to? <|user|> Funds will be sent to the savings account of Amir. <|endofcontext|>
+
+['banks account_type savings', 'banks amount 590 bucks', 'banks recipient_account_name Amir', 'banks recipient_account_type savings']
+action  ['banks confirm account_type', 'banks confirm amount', 'banks confirm recipient_account_name', 'banks confirm recipient_account_type']
+target <|belief|> banks account_type savings, banks amount 590 bucks, banks recipient_account_name Amir, banks recipient_account_type savings <|endofbelief|> <|action|> banks confirm account_type, banks confirm amount, banks confirm recipient_account_name, banks confirm recipient_account_type <|endofaction|> <|response|> To confirm: You wish to transfer [banks_amount] from your [banks_account_type] account to the [banks_account_type] account of [banks_recipient_account_name]. Is this correct? <|endofresponse|>
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|system|> Yes I can help with that. Who will you be sending the funds to? <|user|> Funds will be sent to the savings account of Amir. <|system|> What is the amount of your transfer? <|user|> I need to sned 590 bucks. <|endofcontext|>
+
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|system|> Yes I can help with that. Who will you be sending the funds to? <|user|> Funds will be sent to the savings account of Amir. <|system|> What is the amount of your transfer? <|user|> I need to sned 590 bucks. <|system|> To confirm: You wish to transfer $590 from your savings account to the savings account of AMir. Is this correct? <|user|> Yes that is correct. <|endofcontext|>
+
+
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|system|> Yes I can help with that. Who will you be sending the funds to? <|user|> Funds will be sent to the savings account of Amir. <|system|> What is the amount of your transfer? <|user|> I need to sned 590 bucks. <|system|> To confirm: You wish to transfer $590 from your savings account to the savings account of AMir. Is this correct? <|user|> Yes that is correct. <|system|> Your transfer has been completed. <|user|> Than you. What is the current balance in my account now? <|endofcontext|>
+['banks account_type checking']
+action  ['banks offer balance', 'banks offer account_type']
+target <|belief|> banks account_type checking <|endofbelief|> <|action|> banks offer balance, banks offer account_type <|endofaction|> <|response|> Current [banks_account_type] account balance is [banks_balance]. <|endofresponse|>
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|system|> Yes I can help with that. Who will you be sending the funds to? <|user|> Funds will be sent to the savings account of Amir. <|system|> What is the amount of your transfer? <|user|> I need to sned 590 bucks. <|system|> To confirm: You wish to transfer $590 from your savings account to the savings account of AMir. Is this correct? <|user|> Yes that is correct. <|system|> Your transfer has been completed. <|user|> Than you. What is the current balance in my account now? <|system|> Would you like the balance of savings or checking account? <|user|> I need the balance in my checking account. <|endofcontext|>
+['banks account_type savings']
+action  ['banks offer balance', 'banks offer account_type']
+target <|belief|> banks account_type savings <|endofbelief|> <|action|> banks offer balance, banks offer account_type <|endofaction|> <|response|> Your [banks_account_type] account has a balance of [banks_balance]. <|endofresponse|>
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|system|> Yes I can help with that. Who will you be sending the funds to? <|user|> Funds will be sent to the savings account of Amir. <|system|> What is the amount of your transfer? <|user|> I need to sned 590 bucks. <|system|> To confirm: You wish to transfer $590 from your savings account to the savings account of AMir. Is this correct? <|user|> Yes that is correct. <|system|> Your transfer has been completed. <|user|> Than you. What is the current balance in my account now? <|system|> Would you like the balance of savings or checking account? <|user|> I need the balance in my checking account. <|system|> Current checking account balance is $8,850.41. <|user|> Can you check the balance of my savings account also? <|endofcontext|>
+['banks account_type savings']
+action  ['banks goodbye ']
+target <|belief|> banks account_type savings <|endofbelief|> <|action|> banks goodbye  <|endofaction|> <|response|> Have a lovely day. <|endofresponse|>
+context <|context|> <|user|> Can you assist me in transferring funds from my savings account? <|system|> Yes I can help with that. Who will you be sending the funds to? <|user|> Funds will be sent to the savings account of Amir. <|system|> What is the amount of your transfer? <|user|> I need to sned 590 bucks. <|system|> To confirm: You wish to transfer $590 from your savings account to the savings account of AMir. Is this correct? <|user|> Yes that is correct. <|system|> Your transfer has been completed. <|user|> Than you. What is the current balance in my account now? <|system|> Would you like the balance of savings or checking account? <|user|> I need the balance in my checking account. <|system|> Current checking account balance is $8,850.41. <|user|> Can you check the balance of my savings account also? <|system|> Your savings account has a balance of $4,529.35. <|user|> Thank you. That will be all <|endofcontext|>

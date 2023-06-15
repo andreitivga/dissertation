@@ -1,0 +1,83 @@
+{
+    "service_name": "Banks_2",
+    "description": "Service to manage your bank accounts and finances",
+    "slots": [
+      {
+        "name": "account_type",
+        "description": "The user's account type",
+        "is_categorical": true,
+        "possible_values": [
+          "checking",
+          "savings"
+        ]
+      },
+      {
+        "name": "recipient_account_type",
+        "description": "The account type of the recipient to transfer the money to",
+        "is_categorical": true,
+        "possible_values": [
+          "checking",
+          "savings"
+        ]
+      },
+      {
+        "name": "account_balance",
+        "description": "The balance in the specified account",
+        "is_categorical": false,
+        "possible_values": []
+      },
+      {
+        "name": "transfer_amount",
+        "description": "The amount of money to transfer",
+        "is_categorical": false,
+        "possible_values": []
+      },
+      {
+        "name": "recipient_name",
+        "description": "The name of the recipient to transfer the money to",
+        "is_categorical": false,
+        "possible_values": []
+      },
+      {
+        "name": "transfer_time",
+        "description": "Number of days for the transfer to go through",
+        "is_categorical": false,
+        "possible_values": []
+      }
+    ],
+    "intents": [
+      {
+        "name": "CheckBalance",
+        "description": "Get the balance of an account",
+        "is_transactional": false,
+        "required_slots": [
+          "account_type"
+        ],
+        "optional_slots": {},
+        "result_slots": [
+          "account_type",
+          "account_balance"
+        ]
+      },
+      {
+        "name": "TransferMoney",
+        "description": "Transfer money to another user",
+        "is_transactional": true,
+        "required_slots": [
+          "account_type",
+          "transfer_amount",
+          "recipient_name"
+        ],
+        "optional_slots": {
+          "recipient_account_type": "checking"
+        },
+        "result_slots": [
+          "account_type",
+          "recipient_account_type",
+          "transfer_amount",
+          "recipient_name",
+          "transfer_time"
+        ]
+      }
+    ]
+}

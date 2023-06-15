@@ -1,0 +1,592 @@
+[
+    {
+      "dialogue_id": "40_00000",
+      "services": [
+        "Banks_1"
+      ],
+      "turns": [
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "INFORM",
+                  "canonical_values": [
+                    "savings"
+                  ],
+                  "slot": "account_type",
+                  "values": [
+                    "savings"
+                  ]
+                },
+                {
+                  "act": "INFORM_INTENT",
+                  "canonical_values": [
+                    "TransferMoney"
+                  ],
+                  "slot": "intent",
+                  "values": [
+                    "TransferMoney"
+                  ]
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [],
+              "state": {
+                "active_intent": "TransferMoney",
+                "requested_slots": [],
+                "slot_values": {
+                  "account_type": [
+                    "savings"
+                  ]
+                }
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "Can you assist me in transferring funds from my savings account?"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "REQUEST",
+                  "canonical_values": [],
+                  "slot": "recipient_account_name",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": []
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "Yes I can help with that. Who will you be sending the funds to?"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "INFORM",
+                  "canonical_values": [
+                    "Amir"
+                  ],
+                  "slot": "recipient_account_name",
+                  "values": [
+                    "Amir"
+                  ]
+                },
+                {
+                  "act": "INFORM",
+                  "canonical_values": [
+                    "savings"
+                  ],
+                  "slot": "recipient_account_type",
+                  "values": [
+                    "savings"
+                  ]
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [
+                {
+                  "exclusive_end": 49,
+                  "slot": "recipient_account_name",
+                  "start": 45
+                }
+              ],
+              "state": {
+                "active_intent": "TransferMoney",
+                "requested_slots": [],
+                "slot_values": {
+                  "account_type": [
+                    "savings"
+                  ],
+                  "recipient_account_name": [
+                    "Amir"
+                  ],
+                  "recipient_account_type": [
+                    "savings"
+                  ]
+                }
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "Funds will be sent to the savings account of Amir."
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "REQUEST",
+                  "canonical_values": [],
+                  "slot": "amount",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": []
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "What is the amount of your transfer?"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "INFORM",
+                  "canonical_values": [
+                    "590"
+                  ],
+                  "slot": "amount",
+                  "values": [
+                    "590 bucks"
+                  ]
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [
+                {
+                  "exclusive_end": 24,
+                  "slot": "amount",
+                  "start": 15
+                }
+              ],
+              "state": {
+                "active_intent": "TransferMoney",
+                "requested_slots": [],
+                "slot_values": {
+                  "account_type": [
+                    "savings"
+                  ],
+                  "amount": [
+                    "590 bucks"
+                  ],
+                  "recipient_account_name": [
+                    "Amir"
+                  ],
+                  "recipient_account_type": [
+                    "savings"
+                  ]
+                }
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "I need to sned 590 bucks."
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "CONFIRM",
+                  "canonical_values": [
+                    "savings"
+                  ],
+                  "slot": "account_type",
+                  "values": [
+                    "savings"
+                  ]
+                },
+                {
+                  "act": "CONFIRM",
+                  "canonical_values": [
+                    "590"
+                  ],
+                  "slot": "amount",
+                  "values": [
+                    "$590"
+                  ]
+                },
+                {
+                  "act": "CONFIRM",
+                  "canonical_values": [
+                    "Amir"
+                  ],
+                  "slot": "recipient_account_name",
+                  "values": [
+                    "AMir"
+                  ]
+                },
+                {
+                  "act": "CONFIRM",
+                  "canonical_values": [
+                    "savings"
+                  ],
+                  "slot": "recipient_account_type",
+                  "values": [
+                    "savings"
+                  ]
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [
+                {
+                  "exclusive_end": 37,
+                  "slot": "amount",
+                  "start": 33
+                },
+                {
+                  "exclusive_end": 94,
+                  "slot": "recipient_account_name",
+                  "start": 90
+                }
+              ]
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "To confirm: You wish to transfer $590 from your savings account to the savings account of AMir. Is this correct?"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "AFFIRM",
+                  "canonical_values": [],
+                  "slot": "",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [],
+              "state": {
+                "active_intent": "TransferMoney",
+                "requested_slots": [],
+                "slot_values": {
+                  "account_type": [
+                    "savings"
+                  ],
+                  "amount": [
+                    "$590",
+                    "590 bucks"
+                  ],
+                  "recipient_account_name": [
+                    "AMir",
+                    "Amir"
+                  ],
+                  "recipient_account_type": [
+                    "savings"
+                  ]
+                }
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "Yes that is correct."
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "NOTIFY_SUCCESS",
+                  "canonical_values": [],
+                  "slot": "",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "service_call": {
+                "method": "TransferMoney",
+                "parameters": {
+                  "account_type": "savings",
+                  "amount": "590",
+                  "recipient_account_name": "Amir",
+                  "recipient_account_type": "savings"
+                }
+              },
+              "service_results": [
+                {
+                  "account_type": "savings",
+                  "amount": "590",
+                  "recipient_account_name": "Amir",
+                  "recipient_account_type": "savings"
+                }
+              ],
+              "slots": []
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "Your transfer has been completed."
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "INFORM_INTENT",
+                  "canonical_values": [
+                    "CheckBalance"
+                  ],
+                  "slot": "intent",
+                  "values": [
+                    "CheckBalance"
+                  ]
+                },
+                {
+                  "act": "THANK_YOU",
+                  "canonical_values": [],
+                  "slot": "",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [],
+              "state": {
+                "active_intent": "CheckBalance",
+                "requested_slots": [],
+                "slot_values": {}
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "Than you. What is the current balance in my account now?"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "REQUEST",
+                  "canonical_values": [],
+                  "slot": "account_type",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": []
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "Would you like the balance of savings or checking account?"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "INFORM",
+                  "canonical_values": [
+                    "checking"
+                  ],
+                  "slot": "account_type",
+                  "values": [
+                    "checking"
+                  ]
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [],
+              "state": {
+                "active_intent": "CheckBalance",
+                "requested_slots": [],
+                "slot_values": {
+                  "account_type": [
+                    "checking"
+                  ]
+                }
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "I need the balance in my checking account."
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "OFFER",
+                  "canonical_values": [
+                    "8850.41"
+                  ],
+                  "slot": "balance",
+                  "values": [
+                    "$8,850.41"
+                  ]
+                },
+                {
+                  "act": "OFFER",
+                  "canonical_values": [
+                    "checking"
+                  ],
+                  "slot": "account_type",
+                  "values": [
+                    "checking"
+                  ]
+                }
+              ],
+              "service": "Banks_1",
+              "service_call": {
+                "method": "CheckBalance",
+                "parameters": {
+                  "account_type": "checking"
+                }
+              },
+              "service_results": [
+                {
+                  "account_type": "checking",
+                  "balance": "8850.41"
+                }
+              ],
+              "slots": [
+                {
+                  "exclusive_end": 45,
+                  "slot": "balance",
+                  "start": 36
+                }
+              ]
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "Current checking account balance is $8,850.41."
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "INFORM",
+                  "canonical_values": [
+                    "savings"
+                  ],
+                  "slot": "account_type",
+                  "values": [
+                    "savings"
+                  ]
+                },
+                {
+                  "act": "REQUEST_ALTS",
+                  "canonical_values": [],
+                  "slot": "",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [],
+              "state": {
+                "active_intent": "CheckBalance",
+                "requested_slots": [],
+                "slot_values": {
+                  "account_type": [
+                    "savings"
+                  ]
+                }
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "Can you check the balance of my savings account also?"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "OFFER",
+                  "canonical_values": [
+                    "4529.35"
+                  ],
+                  "slot": "balance",
+                  "values": [
+                    "$4,529.35"
+                  ]
+                },
+                {
+                  "act": "OFFER",
+                  "canonical_values": [
+                    "savings"
+                  ],
+                  "slot": "account_type",
+                  "values": [
+                    "savings"
+                  ]
+                }
+              ],
+              "service": "Banks_1",
+              "service_call": {
+                "method": "CheckBalance",
+                "parameters": {
+                  "account_type": "savings"
+                }
+              },
+              "service_results": [
+                {
+                  "account_type": "savings",
+                  "balance": "4529.35"
+                }
+              ],
+              "slots": [
+                {
+                  "exclusive_end": 47,
+                  "slot": "balance",
+                  "start": 38
+                }
+              ]
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "Your savings account has a balance of $4,529.35."
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "SELECT",
+                  "canonical_values": [],
+                  "slot": "",
+                  "values": []
+                },
+                {
+                  "act": "GOODBYE",
+                  "canonical_values": [],
+                  "slot": "",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": [],
+              "state": {
+                "active_intent": "CheckBalance",
+                "requested_slots": [],
+                "slot_values": {
+                  "account_type": [
+                    "savings"
+                  ]
+                }
+              }
+            }
+          ],
+          "speaker": "USER",
+          "utterance": "Thank you. That will be all"
+        },
+        {
+          "frames": [
+            {
+              "actions": [
+                {
+                  "act": "GOODBYE",
+                  "canonical_values": [],
+                  "slot": "",
+                  "values": []
+                }
+              ],
+              "service": "Banks_1",
+              "slots": []
+            }
+          ],
+          "speaker": "SYSTEM",
+          "utterance": "Have a lovely day."
+        }
+      ]
+    }
+]
