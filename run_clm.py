@@ -400,8 +400,7 @@ def main():
         )
 
     tokenizer.add_special_tokens({'additional_special_tokens': ['<|belief|>', '<|endofbelief|>', '<|action|>', '<|endofaction|>', \
-                                                            '<|response|>', '<|endofresponse|>', '<|context|>', '<|endofcontext|>', '<|user|>', '<|system|>', \
-                                                            '<|task|>', '<|endoftask|>', '<|chitchat|>', '<|endofchitchat|>']})
+                                                            '<|response|>', '<|endofresponse|>', '<|context|>', '<|endofcontext|>', '<|user|>', '<|system|>']})
 
     if model_args.model_name_or_path:
         torch_dtype = (
