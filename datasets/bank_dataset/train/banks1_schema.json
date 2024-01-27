@@ -1,0 +1,76 @@
+{
+    "service_name": "Banks_1",
+    "description": "Manage bank accounts and transfer money",
+    "slots": [
+      {
+        "name": "account_type",
+        "description": "The account type of the user",
+        "is_categorical": true,
+        "possible_values": [
+          "checking",
+          "savings"
+        ]
+      },
+      {
+        "name": "recipient_account_type",
+        "description": "The account type of the recipient whom the user is transfering money to",
+        "is_categorical": true,
+        "possible_values": [
+          "checking",
+          "savings"
+        ]
+      },
+      {
+        "name": "balance",
+        "description": "The amount of money held in a bank account at a given time",
+        "is_categorical": false,
+        "possible_values": []
+      },
+      {
+        "name": "amount",
+        "description": "The amount of money to transfer",
+        "is_categorical": false,
+        "possible_values": []
+      },
+      {
+        "name": "recipient_account_name",
+        "description": "The account name of the recipient who is to receive the transfered money",
+        "is_categorical": false,
+        "possible_values": []
+      }
+    ],
+    "intents": [
+      {
+        "name": "CheckBalance",
+        "description": "Check the amount of money in a user's bank account",
+        "is_transactional": false,
+        "required_slots": [
+          "account_type"
+        ],
+        "optional_slots": {},
+        "result_slots": [
+          "account_type",
+          "balance"
+        ]
+      },
+      {
+        "name": "TransferMoney",
+        "description": "Transfer money from one bank account to another user's account",
+        "is_transactional": true,
+        "required_slots": [
+          "account_type",
+          "amount",
+          "recipient_account_name"
+        ],
+        "optional_slots": {
+          "recipient_account_type": "checking"
+        },
+        "result_slots": [
+          "account_type",
+          "recipient_account_type",
+          "amount",
+          "recipient_account_name"
+        ]
+      }
+    ]
+}

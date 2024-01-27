@@ -14,21 +14,25 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", default="./sgd_dataset/", type=str, required=False, help="path to SGD")
+    parser.add_argument("--data", default="./datasets/bank_dataset/", type=str, required=False, help="path to banking dataset")
     parser.add_argument("--target", default="./output_training_files/", type=str, required=False, help="path to output")
     args = parser.parse_args()
 
     datafolder = args.data
     targetfolder = args.target
 
-    for folder in ["train", "dev", "test"]:
+    for folder in ["train", "val", "test"]:
 
-        schema_file = open(os.path.join(datafolder, folder, 'schema.json'))
+        if folder == 'train':
+            schema_file = open(os.path.join(datafolder, folder, 'banks1_schema.json'))
+        elif folder == 'val' or folder == 'test':
+            schema_file = open(os.path.join(datafolder, folder, 'banks2_schema.json'))
+
         schema = json.load(schema_file)
         
         replace_strings = {} # key = slot name (account_type), values = list of possible values
 
-        for elem in schema[0]['slots']:
+        for elem in schema['slots']:
             if len(elem['possible_values']) > 0:
                 replace_strings[elem['name']] = elem['possible_values']
 
@@ -39,7 +43,7 @@ def main():
         files.sort()
 
         for file in files:
-            if not file.startswith("dialogue"):
+            if not file.startswith("bank_dialogues"):
                 continue
         
             dialogues_file = open(os.path.join(datafolder, folder, file))
@@ -48,7 +52,6 @@ def main():
             for dialogue in dialogues:
                 context = '<|context|> '
                 for turn in dialogue['turns']:
-
                     speaker = turn['speaker']
                     frames = turn['frames'][0]
                     act = frames['actions']
@@ -125,9 +128,10 @@ def main():
                         context = prev_context + '<|system|> ' + utterance_lex + ' '
 
         random.shuffle(inlm)
-        with open(targetfolder + "lm.input." + folder + ".txt", "w", encoding='utf8') as f: #SimpleTOD
+        
+        with open(targetfolder + "input_" + folder + "_entire_structure.txt", "w", encoding='utf8') as f: #SimpleTOD
             f.write('\n'.join(inlm))
-        with open(targetfolder + "lm.input." + folder + ".eval.txt", "w", encoding='utf8') as f: #used as the input during evaluation of SimpleTOD and SimpleTOD extension
+        with open(targetfolder + "input." + folder + "_only_context.txt", "w", encoding='utf8') as f: #used as the input during evaluation of SimpleTOD and SimpleTOD extension
             f.write('\n'.join(inlme))
 
 if __name__ == "__main__":
