@@ -2,9 +2,9 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import re
 
-ckpt = 'checkpoint-9000'
-tokenizer = AutoTokenizer.from_pretrained(ckpt)
-model = AutoModelForCausalLM.from_pretrained(ckpt)
+ckpt = 'output_model_gpt2_50epoch'
+tokenizer = AutoTokenizer.from_pretrained(ckpt, use_safetensors=True)
+model = AutoModelForCausalLM.from_pretrained(ckpt, use_safetensors=True)
 
 context_token = tokenizer.encode('<|context|>', return_tensors='pt')
 endofcontext_token = tokenizer.encode(' <|endofcontext|>', return_tensors='pt')

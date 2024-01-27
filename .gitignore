@@ -3,3 +3,4 @@ sgd_dataset
 checkpoint-*
 output_gpt
 test_preprocess
+output_model_*
