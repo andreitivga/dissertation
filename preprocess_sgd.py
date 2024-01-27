@@ -15,7 +15,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", default="./datasets/bank_dataset/", type=str, required=False, help="path to banking dataset")
-    parser.add_argument("--target", default="./output_training_files/", type=str, required=False, help="path to output")
+    parser.add_argument("--target", default="./training_files/", type=str, required=False, help="path to output")
     args = parser.parse_args()
 
     datafolder = args.data
@@ -131,7 +131,7 @@ def main():
         
         with open(targetfolder + "input_" + folder + "_entire_structure.txt", "w", encoding='utf8') as f: #SimpleTOD
             f.write('\n'.join(inlm))
-        with open(targetfolder + "input." + folder + "_only_context.txt", "w", encoding='utf8') as f: #used as the input during evaluation of SimpleTOD and SimpleTOD extension
+        with open(targetfolder + "input_" + folder + "_only_context.txt", "w", encoding='utf8') as f: #used as the input during evaluation of SimpleTOD and SimpleTOD extension
             f.write('\n'.join(inlme))
 
 if __name__ == "__main__":
