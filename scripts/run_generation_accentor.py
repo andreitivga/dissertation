@@ -43,8 +43,8 @@ ret = []
 pad_token_id = 50260
 eos_token_id = 50258
 
-tokenizer.pad_token = pad_token_id
-tokenizer.eos_token = eos_token_id
+tokenizer.pad_token_id = pad_token_id
+tokenizer.eos_token_id = eos_token_id
 
 for batch in tqdm(range(len(prompts))):
     prompt_text = prompts[batch : batch+batch_size]
