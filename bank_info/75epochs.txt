@@ -1,0 +1,275 @@
+2024-01-28 10:37:21.143748: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2024-01-28 10:37:21.143803: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2024-01-28 10:37:21.145935: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-01-28 10:37:22.309564: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+CUDA backend failed to initialize: Found cuBLAS version 120103, but JAX was built against version 120205, which is newer. The copy of cuBLAS that is installed must be at least as new as the version against which JAX was built. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+01/28/2024 10:37:26 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 1distributed training: True, 16-bits training: True
+01/28/2024 10:37:26 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=True,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=18,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.001,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=output_model_gpt2_75epoch/runs/Jan28_10-37-26_a0f634bbd3d2,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=25.0,
+optim=adamw_torch,
+optim_args=None,
+output_dir=output_model_gpt2_75epoch,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=3,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=output_model_gpt2_75epoch,
+save_on_each_node=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=False,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+/usr/local/lib/python3.10/dist-packages/datasets/load.py:2483: FutureWarning: 'use_auth_token' was deprecated in favor of 'token' in version 2.14.0 and will be removed in 3.0.0.
+You can remove this warning by passing 'token=<use_auth_token>' instead.
+  warnings.warn(
+Using custom data configuration default-2e0676651b36afb2
+01/28/2024 10:37:27 - INFO - datasets.builder - Using custom data configuration default-2e0676651b36afb2
+Loading Dataset Infos from /usr/local/lib/python3.10/dist-packages/datasets/packaged_modules/text
+01/28/2024 10:37:27 - INFO - datasets.info - Loading Dataset Infos from /usr/local/lib/python3.10/dist-packages/datasets/packaged_modules/text
+Generating dataset text (/root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34)
+01/28/2024 10:37:27 - INFO - datasets.builder - Generating dataset text (/root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34)
+Downloading and preparing dataset text/default to /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34...
+01/28/2024 10:37:27 - INFO - datasets.builder - Downloading and preparing dataset text/default to /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34...
+Downloading took 0.0 min
+01/28/2024 10:37:27 - INFO - datasets.download.download_manager - Downloading took 0.0 min
+Checksum Computation took 0.0 min
+01/28/2024 10:37:27 - INFO - datasets.download.download_manager - Checksum Computation took 0.0 min
+Generating train split
+01/28/2024 10:37:27 - INFO - datasets.builder - Generating train split
+Generating train split: 6827 examples [00:00, 78946.68 examples/s]
+Generating validation split
+01/28/2024 10:37:27 - INFO - datasets.builder - Generating validation split
+Generating validation split: 1650 examples [00:00, 158798.60 examples/s]
+Unable to verify splits sizes.
+01/28/2024 10:37:27 - INFO - datasets.utils.info_utils - Unable to verify splits sizes.
+Dataset text downloaded and prepared to /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34. Subsequent calls will reuse this data.
+01/28/2024 10:37:27 - INFO - datasets.builder - Dataset text downloaded and prepared to /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34. Subsequent calls will reuse this data.
+[INFO|configuration_utils.py:715] 2024-01-28 10:37:27,158 >> loading configuration file output_model_gpt2_50epoch/config.json
+[INFO|configuration_utils.py:777] 2024-01-28 10:37:27,159 >> Model config GPT2Config {
+  "_name_or_path": "output_model_gpt2_50epoch",
+  "activation_function": "gelu_new",
+  "architectures": [
+    "GPT2LMHeadModel"
+  ],
+  "attn_pdrop": 0.1,
+  "bos_token_id": 50256,
+  "embd_pdrop": 0.1,
+  "eos_token_id": 50256,
+  "initializer_range": 0.02,
+  "layer_norm_epsilon": 1e-05,
+  "model_type": "gpt2",
+  "n_ctx": 1024,
+  "n_embd": 768,
+  "n_head": 12,
+  "n_inner": null,
+  "n_layer": 12,
+  "n_positions": 1024,
+  "reorder_and_upcast_attn": false,
+  "resid_pdrop": 0.1,
+  "scale_attn_by_inverse_layer_idx": false,
+  "scale_attn_weights": true,
+  "summary_activation": null,
+  "summary_first_dropout": 0.1,
+  "summary_proj_to_labels": true,
+  "summary_type": "cls_index",
+  "summary_use_proj": true,
+  "task_specific_params": {
+    "text-generation": {
+      "do_sample": true,
+      "max_length": 50
+    }
+  },
+  "torch_dtype": "float32",
+  "transformers_version": "4.35.2",
+  "use_cache": true,
+  "vocab_size": 50267
+}
+
+[INFO|tokenization_utils_base.py:2020] 2024-01-28 10:37:27,180 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2020] 2024-01-28 10:37:27,180 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2020] 2024-01-28 10:37:27,180 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2020] 2024-01-28 10:37:27,180 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2020] 2024-01-28 10:37:27,180 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2020] 2024-01-28 10:37:27,180 >> loading file tokenizer_config.json
+[WARNING|logging.py:314] 2024-01-28 10:37:27,249 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|modeling_utils.py:3118] 2024-01-28 10:37:27,255 >> loading weights file output_model_gpt2_50epoch/model.safetensors
+[INFO|configuration_utils.py:791] 2024-01-28 10:37:27,294 >> Generate config GenerationConfig {
+  "bos_token_id": 50256,
+  "eos_token_id": 50256
+}
+
+[INFO|modeling_utils.py:3950] 2024-01-28 10:37:29,048 >> All model checkpoint weights were used when initializing GPT2LMHeadModel.
+
+[INFO|modeling_utils.py:3958] 2024-01-28 10:37:29,048 >> All the weights of GPT2LMHeadModel were initialized from the model checkpoint at output_model_gpt2_50epoch.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use GPT2LMHeadModel for predictions without further training.
+[INFO|configuration_utils.py:749] 2024-01-28 10:37:29,050 >> loading configuration file output_model_gpt2_50epoch/generation_config.json
+[INFO|configuration_utils.py:791] 2024-01-28 10:37:29,050 >> Generate config GenerationConfig {
+  "bos_token_id": 50256,
+  "eos_token_id": 50256
+}
+
+Running tokenizer on dataset:   0% 0/6827 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-235f85d38516afad.arrow
+01/28/2024 10:37:29 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-235f85d38516afad.arrow
+Running tokenizer on dataset: 100% 6827/6827 [00:03<00:00, 2257.54 examples/s]
+Running tokenizer on dataset:   0% 0/1650 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-76d48ccc4c00ae32.arrow
+01/28/2024 10:37:32 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-76d48ccc4c00ae32.arrow
+Running tokenizer on dataset: 100% 1650/1650 [00:01<00:00, 1144.39 examples/s]
+Grouping texts in chunks of 1024:   0% 0/6827 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-d31ffa7b168026d0.arrow
+01/28/2024 10:37:33 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-d31ffa7b168026d0.arrow
+Grouping texts in chunks of 1024: 100% 6827/6827 [00:01<00:00, 3473.73 examples/s]
+Grouping texts in chunks of 1024:   0% 0/1650 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-7c4dfbc6aab16a2c.arrow
+01/28/2024 10:37:35 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/text/default-2e0676651b36afb2/0.0.0/c4a140d10f020282918b5dd1b8a49f0104729c6177f60a6b49ec2a365ec69f34/cache-7c4dfbc6aab16a2c.arrow
+Grouping texts in chunks of 1024: 100% 1650/1650 [00:00<00:00, 3505.56 examples/s]
+Downloading builder script: 100% 4.20k/4.20k [00:00<00:00, 16.2MB/s]
+[INFO|trainer.py:593] 2024-01-28 10:37:37,175 >> Using auto half precision backend
+[INFO|trainer.py:1723] 2024-01-28 10:37:37,417 >> ***** Running training *****
+[INFO|trainer.py:1724] 2024-01-28 10:37:37,417 >>   Num examples = 1,246
+[INFO|trainer.py:1725] 2024-01-28 10:37:37,417 >>   Num Epochs = 25
+[INFO|trainer.py:1726] 2024-01-28 10:37:37,417 >>   Instantaneous batch size per device = 3
+[INFO|trainer.py:1729] 2024-01-28 10:37:37,417 >>   Total train batch size (w. parallel, distributed & accumulation) = 54
+[INFO|trainer.py:1730] 2024-01-28 10:37:37,417 >>   Gradient Accumulation steps = 18
+[INFO|trainer.py:1731] 2024-01-28 10:37:37,417 >>   Total optimization steps = 575
+[INFO|trainer.py:1732] 2024-01-28 10:37:37,418 >>   Number of trainable parameters = 124,447,488
+{'loss': 0.0282, 'learning_rate': 0.00013043478260869564, 'epoch': 21.63}
+ 87% 500/575 [1:13:38<11:04,  8.86s/it][INFO|trainer.py:2881] 2024-01-28 11:51:15,674 >> Saving model checkpoint to output_model_gpt2_75epoch/checkpoint-500
+[INFO|configuration_utils.py:461] 2024-01-28 11:51:15,676 >> Configuration saved in output_model_gpt2_75epoch/checkpoint-500/config.json
+[INFO|configuration_utils.py:564] 2024-01-28 11:51:15,676 >> Configuration saved in output_model_gpt2_75epoch/checkpoint-500/generation_config.json
+[INFO|modeling_utils.py:2193] 2024-01-28 11:51:17,706 >> Model weights saved in output_model_gpt2_75epoch/checkpoint-500/pytorch_model.bin
+[INFO|tokenization_utils_base.py:2428] 2024-01-28 11:51:17,707 >> tokenizer config file saved in output_model_gpt2_75epoch/checkpoint-500/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2437] 2024-01-28 11:51:17,707 >> Special tokens file saved in output_model_gpt2_75epoch/checkpoint-500/special_tokens_map.json
+100% 575/575 [1:24:48<00:00,  8.86s/it][INFO|trainer.py:1955] 2024-01-28 12:02:25,841 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+{'train_runtime': 5088.4535, 'train_samples_per_second': 6.122, 'train_steps_per_second': 0.113, 'train_loss': 0.026210993165555207, 'epoch': 24.88}
+100% 575/575 [1:24:48<00:00,  8.85s/it]
+[INFO|trainer.py:2881] 2024-01-28 12:02:25,874 >> Saving model checkpoint to output_model_gpt2_75epoch
+[INFO|configuration_utils.py:461] 2024-01-28 12:02:25,875 >> Configuration saved in output_model_gpt2_75epoch/config.json
+[INFO|configuration_utils.py:564] 2024-01-28 12:02:25,876 >> Configuration saved in output_model_gpt2_75epoch/generation_config.json
+[INFO|modeling_utils.py:2193] 2024-01-28 12:02:27,753 >> Model weights saved in output_model_gpt2_75epoch/pytorch_model.bin
+[INFO|tokenization_utils_base.py:2428] 2024-01-28 12:02:27,754 >> tokenizer config file saved in output_model_gpt2_75epoch/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2437] 2024-01-28 12:02:27,754 >> Special tokens file saved in output_model_gpt2_75epoch/special_tokens_map.json
+***** train metrics *****
+  epoch                    =      24.88
+  train_loss               =     0.0262
+  train_runtime            = 1:24:48.45
+  train_samples            =       1246
+  train_samples_per_second =      6.122
+  train_steps_per_second   =      0.113
+01/28/2024 12:02:27 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:3158] 2024-01-28 12:02:27,807 >> ***** Running Evaluation *****
+[INFO|trainer.py:3160] 2024-01-28 12:02:27,807 >>   Num examples = 379
+[INFO|trainer.py:3163] 2024-01-28 12:02:27,807 >>   Batch size = 8
+100% 48/48 [00:26<00:00,  1.81it/s]
+***** eval metrics *****
+  epoch                   =      24.88
+  eval_accuracy           =     0.5247
+  eval_loss               =     6.2692
+  eval_runtime            = 0:00:27.32
+  eval_samples            =        379
+  eval_samples_per_second =     13.868
+  eval_steps_per_second   =      1.756
+  perplexity              =   528.0298
+[INFO|modelcard.py:452] 2024-01-28 12:02:55,288 >> Dropping the following result as it does not have all the necessary fields:
+{'task': {'name': 'Causal Language Modeling', 'type': 'text-generation'}, 'metrics': [{'name': 'Accuracy', 'type': 'accuracy', 'value': 0.5246945581442134}]}
