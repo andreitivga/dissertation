@@ -2,13 +2,27 @@
 
 import json
 import os
-from utils import bleuscorer
 import argparse
+import nltk
+
+def bleuscorer(hyps, refs):
+    #print(hyps, refs)
+    bleu = []
+    for hyp, ref in zip(hyps, refs):
+        hyp = hyp.split()
+        ref = [a.split() for a in ref]
+        #hyp = nltk.word_tokenize(hyp)
+        #ref = [nltk.word_tokenize(a) for a in ref]
+        bleu += [nltk.translate.bleu_score.sentence_bleu(ref, hyp)]
+    return sum(bleu) / len(bleu)
+
+# if __name__ == '__main__':
+#     print(bleuscorer(['the the the the the the the', 'there is a cat', 'it is'], [["the cat is on the mat", "there is a cat on the mat"], ["there is a cat on the mat"], ["it is true"]]))
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--inference", default="dev.inference.gpt2_10epoch_1e-3_fp16.json", type=str, required=False, help='inference file')
-    parser.add_argument("--datafolder", default="./simpletod/", type=str, required=False, help='data folder')
+    parser.add_argument("--datafolder", default="datasets/bank_dataset/", type=str, required=False, help='data folder')
     parser.add_argument("--predictionfolder", default="./prediction/", type=str, required=False, help='prediction folder')
     parser.add_argument("--split", default="dev", type=str, required=False, help="[dev,test]")
     args = parser.parse_args()
@@ -29,18 +43,16 @@ def main():
     cnt = 0
 
     seen_services = set()
-    with open(datafolder + "train/" + "schema.json", "r") as f:
+    with open(datafolder + "train/" + "banks1_schema.json", "r") as f:
         schema = json.load(f)
-        for i in range(len(schema)):
-            seen_services.add(schema[i]["service_name"])
+        seen_services.add(schema["service_name"])
 
     domain_slots = set()
-    with open(datafolder + folder + "schema.json", "r") as f:
+    with open(datafolder + folder + "banks2_schema.json", "r") as f:
         schema = json.load(f)
-        for i in range(len(schema)):
-            for j in range(len(schema[i]["slots"])):
-                assert(" " not in schema[i]["slots"][j])
-                domain_slots.add(schema[i]["service_name"].split("_")[0].lower() + " " + schema[i]["slots"][j]["name"].lower())
+        for j in range(len(schema["slots"])):
+            assert(" " not in schema["slots"][j])
+            domain_slots.add(schema["service_name"].split("_")[0].lower() + " " + schema["slots"][j]["name"].lower())
 
 
     fns = os.listdir(datafolder + folder)

@@ -2,8 +2,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import re
 
-ckpt = 'output_model_gpt2_50epoch'
-tokenizer = AutoTokenizer.from_pretrained(ckpt, use_safetensors=True)
+ckpt = 'output_model_gpt2_100epoch'
+tokenizer = AutoTokenizer.from_pretrained(ckpt, padding_side='left', use_safetensors=True)
 model = AutoModelForCausalLM.from_pretrained(ckpt, use_safetensors=True)
 
 context_token = tokenizer.encode('<|context|>', return_tensors='pt')
@@ -27,9 +27,11 @@ def generate_response(input, history):
     model_input = torch.cat([context_token, context_tokenized, user_input_tokenized, endofcontext_token], dim=-1)
     attention_mask = torch.ones_like(model_input)
 
-    out_tokenized = model.generate(model_input, max_length=1024, eos_token_id=50262, pad_token_id=50262, attention_mask=attention_mask).tolist()[0]
+    out_tokenized = model.generate(model_input, max_length=1024, eos_token_id=50258, pad_token_id=50260, attention_mask=attention_mask).tolist()[0]
     out_str = tokenizer.decode(out_tokenized)
+    out_str = out_str.split('\n')[0]
 
+    print(out_str.split('\n')[0])
     generated_substring = out_str.split('<|endofcontext|>')[1] #belief, actions, system_response
 
     beliefs_start_index = generated_substring.find('<|belief|>') + len('<|belief|>')
