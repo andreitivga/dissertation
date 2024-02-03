@@ -31,7 +31,6 @@ def generate_response(input, history):
     out_str = tokenizer.decode(out_tokenized)
     out_str = out_str.split('\n')[0]
 
-    print(out_str.split('\n')[0])
     generated_substring = out_str.split('<|endofcontext|>')[1] #belief, actions, system_response
 
     beliefs_start_index = generated_substring.find('<|belief|>') + len('<|belief|>')
